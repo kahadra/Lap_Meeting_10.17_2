@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 12: Discretizing the Laplacian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .code-block {
+            background-color: #2d3748;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-th mr-3 text-blue-600"></i>Discretizing the Laplacian</h1>
+            <p class="text-xl text-gray-500 mt-2">미분 연산을 픽셀 단위의 덧셈과 뺄셈으로 근사하기</p>
+        </header>
+        <main class="flex-grow mt-10 grid grid-cols-2 gap-10 items-center">
+            <div class="flex flex-col justify-center text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Laplacian의 이산 근사</h2>
+                <div class="code-block">
+<pre><code>∇²R(i,j) ≈ R(i+1,j) + R(i-1,j)
+           + R(i,j+1) + R(i,j-1) - 4R(i,j)</code></pre>
+                </div>
+                <p class="text-xl text-gray-700 mt-8 leading-relaxed">
+                    한 픽셀에서의 라플라시안 값은, <b class="text-blue-700">상하좌우 이웃 픽셀 값의 합에서 현재 픽셀 값의 4배를 뺀 것</b>으로 근사할 수 있습니다.
+                </p>
+            </div>
+            <div class="flex items-center justify-center">
+                <!-- Simple grid visualization -->
+                <div class="relative w-64 h-64 grid grid-cols-3 grid-rows-3 gap-1">
+                    <div class="bg-gray-200"></div>
+                    <div class="bg-blue-200 flex items-center justify-center text-2xl font-bold">R<sub>i, j-1</sub></div>
+                    <div class="bg-gray-200"></div>
+                    <div class="bg-blue-200 flex items-center justify-center text-2xl font-bold">R<sub>i-1, j</sub></div>
+                    <div class="bg-red-300 flex items-center justify-center text-2xl font-bold">R<sub>i, j</sub></div>
+                    <div class="bg-blue-200 flex items-center justify-center text-2xl font-bold">R<sub>i+1, j</sub></div>
+                    <div class="bg-gray-200"></div>
+                    <div class="bg-blue-200 flex items-center justify-center text-2xl font-bold">R<sub>i, j+1</sub></div>
+                    <div class="bg-gray-200"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

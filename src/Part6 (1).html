@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 20: Summary 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .summary-item {
+            background-color: #f9fafb;
+            border-left: 5px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-check-double mr-3 text-blue-600"></i>Summary (1/2): From Problem to PDE</h1>
+            <p class="text-xl text-gray-500 mt-2">문제 정의부터 미분방정식 유도까지의 과정</p>
+        </header>
+        <main class="flex-grow mt-12 flex flex-col justify-center space-y-8">
+            <div class="summary-item">
+                <h2 class="text-2xl font-bold text-gray-800">문제 정의: 역문제 (Inverse Problem)</h2>
+                <p class="text-xl text-gray-700 mt-2">관측 영상 <b class="font-mono">I = R + n</b> 으로부터 원본 영상 <b class="font-mono">R</b>을 추정하는 문제로, 직접 풀 수 없어 최적화 기법이 필요합니다.</p>
+            </div>
+            <div class="summary-item">
+                <h2 class="text-2xl font-bold text-gray-800">에너지 정식화: 데이터 항 + 정규화 항</h2>
+                <p class="text-xl text-gray-700 mt-2">에너지 <b class="font-mono">E = E<sub>d</sub> + αE<sub>s</sub></b> 를 정의하고, 이를 최소화하는 해를 찾습니다. (데이터 충실도 vs. 사전 지식)</p>
+            </div>
+            <div class="summary-item">
+                <h2 class="text-2xl font-bold text-gray-800">Tikhonov (L2) 정규화: 평활화 (Smoothing)</h2>
+                <p class="text-xl text-gray-700 mt-2">정규화 항으로 <b class="font-mono">∫|∇R|<sup>2</sup></b> 를 사용하여 부드러운 해를 유도합니다.</p>
+            </div>
+            <div class="summary-item">
+                <h2 class="text-2xl font-bold text-gray-800">해법: 오일러-라그랑주 방정식</h2>
+                <p class="text-xl text-gray-700 mt-2">에너지 최소화 조건으로부터 편미분방정식 <b class="font-mono">(R - I) - α∇<sup>2</sup>R = 0</b> 을 유도합니다.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

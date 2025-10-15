@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 17: Energy Terms for Image Restoration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background-color: #f9fafb;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-tasks mr-3 text-blue-600"></i>Energy Terms for Image Restoration</h1>
+            <p class="text-xl text-gray-500 mt-2">Tikhonov 정규화 에너지 구조 복습</p>
+        </header>
+        <main class="flex-grow mt-10 flex flex-col justify-center items-center text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Tikhonov Regularization Energy</h2>
+            <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-200 w-full max-w-4xl">
+                <p class="formula text-4xl">E(R) = ∫ (R - I)<sup>2</sup> + α|∇R|<sup>2</sup> dxdy</p>
+            </div>
+            <div class="w-full max-w-6xl mt-12 grid grid-cols-2 gap-10">
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-green-700 mb-4">Data Term: (R - I)<sup>2</sup></h3>
+                    <i class="fas fa-anchor text-5xl text-green-500 mb-4"></i>
+                    <p class="text-xl text-gray-700 leading-relaxed">
+                        <b>"이미지 내용 유지"</b>
+                        <br>
+                        복원된 영상(R)이 관측 영상(I)의 형태를 잃지 않도록 붙잡아주는 닻(anchor) 역할을 합니다.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-purple-700 mb-4">Regularization Term: α|∇R|<sup>2</sup></h3>
+                    <i class="fas fa-broom text-5xl text-purple-500 mb-4"></i>
+                    <p class="text-xl text-gray-700 leading-relaxed">
+                        <b>"노이즈 억제"</b>
+                        <br>
+                        영상 전체의 매끄러움을 강제하여, 급격한 변화(노이즈)를 빗자루로 쓸어내듯 제거하는 역할을 합니다.
+                    </p>
+                </div>
+            </div>
+            <p class="text-2xl text-gray-800 mt-10">두 항의 <b class="text-blue-700">균형</b>이 최종 복원 결과의 품질을 결정합니다.</p>
+        </main>
+    </div>
+</body>
+</html>

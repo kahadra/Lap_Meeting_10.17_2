@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 3: Mathematical Basis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background-color: #f9fafb; /* bg-gray-50 */
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-5xl font-bold text-gray-800 tracking-tight"><i class="fas fa-calculator mr-4 text-blue-600"></i>Mathematical Basis</h1>
+            <p class="text-2xl text-gray-500 mt-2">변분법에 사용되는 핵심 미분 연산자</p>
+        </header>
+        <main class="flex-grow mt-8 grid grid-cols-3 gap-8">
+            <!-- Gradient Block -->
+            <div class="bg-gray-50 p-6 rounded-lg text-center flex flex-col">
+                <h2 class="text-2xl font-bold text-gray-800">Gradient (기울기)</h2>
+                <div class="my-4 flex-grow flex items-center justify-center">
+                    <p class="formula text-2xl">∇f = (<sup>∂f</sup>&frasl;<sub>∂x</sub>, <sup>∂f</sup>&frasl;<sub>∂y</sub>)</p>
+                </div>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    스칼라 장에서 <b class="text-blue-600">값의 변화가 가장 큰 방향과 크기</b>를 나타내는 벡터입니다. 이미지에서는 밝기 변화량을 의미합니다.
+                </p>
+            </div>
+            <!-- Divergence Block -->
+            <div class="bg-gray-50 p-6 rounded-lg text-center flex flex-col">
+                <h2 class="text-2xl font-bold text-gray-800">Divergence (발산)</h2>
+                <div class="my-4 flex-grow flex items-center justify-center">
+                    <p class="formula text-2xl">∇·F = <sup>∂F<sub>x</sub></sup>&frasl;<sub>∂x</sub> + <sup>∂F<sub>y</sub></sup>&frasl;<sub>∂y</sub></p>
+                </div>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    벡터 장이 한 점에서 <b class="text-blue-600">얼마나 퍼져나가거나 모이는지</b>의 강도를 나타내는 스칼라 값입니다.
+                </p>
+            </div>
+            <!-- Laplacian Block -->
+            <div class="bg-blue-50 border-2 border-blue-300 p-6 rounded-lg text-center flex flex-col">
+                <h2 class="text-2xl font-bold text-blue-800">Laplacian (라플라시안)</h2>
+                <div class="my-4 flex-grow flex items-center justify-center">
+                    <p class="formula text-2xl">∇<sup>2</sup>f = ∇·(∇f)</p>
+                </div>
+                <p class="text-lg text-blue-700 leading-relaxed">
+                    <b>Gradient의 Divergence</b>로, 값의 변화율이 주변에 비해 얼마나 높은지를 나타냅니다. 이미지의 <b class="font-bold">평탄함(smoothness)</b>을 측정하는 척도입니다.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Slide 18: Visualizing Tikhonov Denoising</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto 'Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .profile-graph {
+            border-left: 2px solid #6b7280;
+            border-bottom: 2px solid #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas-chart-bar mr-3 text-blue-600"></i>Visualizing Tikhonov Denoising</h1>
+            <p class="text-xl text-gray-500 mt-2">1D 신호 프로파일을 통해 L2 정규화의 효과 살펴보기</p>
+        </header>
+        <main class="flex-grow mt-8 grid grid-cols-3 gap-8">
+            <!-- Original Signal -->
+            <div class="flex flex-col text-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">원본 신호 + 노이즈</h2>
+                <div class="profile-graph w-full h-64 rounded-lg flex items-center justify-center">
+                    <svg viewBox="0 0 100 50" class="w-full h-full">
+                        <polyline points="5,40 25,10 27,15 29,8 31,16 33,10 35,14 55,40 75,20 77,25 79,18 81,26 83,20 85,24 95,40" stroke="#4b5563" stroke-width="1" fill="none"/>
+                    </svg>
+                </div>
+                <p class="text-lg text-gray-700 mt-4 p-4 bg-gray-100 rounded-lg flex-grow">날카로운 경계(edge)와 불규칙한 노이즈가 섞여 있음.</p>
+            </div>
+            <!-- Result (alpha=0.1) -->
+            <div class="flex flex-col text-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">복원 결과 (α = 0.1)</h2>
+                <div class="profile-graph w-full h-64 rounded-lg flex items-center justify-center">
+                    <svg viewBox="0 0 100 50" class="w-full h-full">
+                        <path d="M 5,40 C 25,10 30,10 55,40 C 75,20 80,20 95,40" stroke="#3b82f6" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <p class="text-lg text-gray-700 mt-4 p-4 bg-blue-50 rounded-lg flex-grow">노이즈가 대부분 제거되어 신호가 부드러워졌지만, 원래 날카로웠던 경계 부분도 함께 둥글게 뭉개짐.</p>
+            </div>
+            <!-- Result (alpha=1.0) -->
+            <div class="flex flex-col text-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">복원 결과 (α = 1.0)</h2>
+                <div class="profile-graph w-full h-64 rounded-lg flex items-center justify-center">
+                     <svg viewBox="0 0 100 50" class="w-full h-full">
+                        <path d="M 5,40 C 30,30 70,30 95,40" stroke="#ef4444" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <p class="text-lg text-gray-700 mt-4 p-4 bg-red-50 rounded-lg flex-grow">신호가 매우 부드러워졌지만, 원래 신호의 형태(두 개의 봉우리)를 거의 잃어버림 (과평활화).</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

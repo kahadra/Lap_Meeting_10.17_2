@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프레젠테이션 뷰어: Variational Methods</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #374151; /* bg-gray-700 */
+        }
+        #slide-frame {
+            width: 1280px;
+            height: 720px;
+            transform-origin: top left;
+            border: none;
+        }
+        #presentation-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background-color: #111827; /* bg-gray-900 */
+        }
+        #scaler {
+            transform-origin: top left;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
+
+    <!-- 프레젠테이션 슬라이드가 표시될 컨테이너 -->
+    <div id="presentation-container" class="w-full max-w-6xl rounded-lg">
+        <div id="scaler">
+            <iframe id="slide-frame" src="" scrolling="no"></iframe>
+        </div>
+    </div>
+
+    <!-- 네비게이션 컨트롤러 -->
+    <nav class="w-full max-w-6xl mt-4 p-4 bg-gray-800 rounded-lg shadow-lg flex items-center justify-between text-white">
+        <!-- 이전/다음 버튼 -->
+        <div class="flex items-center gap-4">
+            <button id="prev-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                <i class="fas fa-arrow-left mr-2"></i> 이전
+            </button>
+            <button id="next-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                다음 <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+
+        <!-- 슬라이드 번호 표시 -->
+        <div id="slide-info" class="text-lg font-bold">
+            Slide 1 / 27
+        </div>
+
+        <!-- 특정 슬라이드로 이동 -->
+        <div class="flex items-center gap-2">
+            <input type="number" id="slide-jump-input" min="1" max="27" class="w-20 p-2 bg-gray-700 border border-gray-600 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="jump-btn" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md transition-colors">이동</button>
+        </div>
+    </nav>
+
+    <script>
+        // --- 설정 ---
+        const FOLDER_PATH = "src/";
+        
+        // 슬라이드 파일 이름 목록 (이미지에 표시된 순서대로)
+        const slideFiles = [
+            "Part1 (1).html", "Part1 (2).html", "Part1 (3).html",
+            "Part2 (1).html", "Part2 (2).html", "Part2 (3).html", "Part2 (4).html",
+            "Part3 (1).html", "Part3 (2).html", "Part3 (3).html", "Part3 (4).html",
+            "Part4 (1).html", "Part4 (2).html", "Part4 (3).html", "Part4 (4).html", "Part4 (5).html", "Part4 (6).html", "Part4 (7).html",
+            "Part5 (1).html", "Part5 (2).html", "Part5 (3).html", "Part5 (4).html",
+            "Part6 (1).html", "Part6 (2).html", "Part6 (3).html", "Part6 (4).html"
+        ];
+        
+        const TOTAL_SLIDES = slideFiles.length;
+        // -------------
+
+        // DOM 요소 가져오기
+        const slideFrame = document.getElementById('slide-frame');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const slideInfo = document.getElementById('slide-info');
+        const slideJumpInput = document.getElementById('slide-jump-input');
+        const jumpBtn = document.getElementById('jump-btn');
+        const container = document.getElementById('presentation-container');
+        const scaler = document.getElementById('scaler');
+
+        let currentSlide = 1;
+
+        // 특정 슬라이드로 이동하는 함수
+        function goToSlide(slideNumber) {
+            let num = parseInt(slideNumber, 10);
+            if (isNaN(num) || num < 1) {
+                num = 1;
+            }
+            if (num > TOTAL_SLIDES) {
+                num = TOTAL_SLIDES;
+            }
+
+            currentSlide = num;
+
+            // 배열에서 파일 이름을 찾아 경로 조합 (예: src/Part1 (1).html)
+            const fileName = FOLDER_PATH + slideFiles[currentSlide - 1];
+            slideFrame.src = fileName;
+
+            updateNavControls();
+        }
+
+        // 네비게이션 UI 업데이트 함수
+        function updateNavControls() {
+            slideInfo.textContent = `Slide ${currentSlide} / ${TOTAL_SLIDES}`;
+            slideJumpInput.value = currentSlide;
+            slideJumpInput.max = TOTAL_SLIDES;
+
+            prevBtn.disabled = (currentSlide === 1);
+            nextBtn.disabled = (currentSlide === TOTAL_SLIDES);
+        }
+
+        // iframe 크기를 컨테이너에 맞게 조절하는 함수
+        function resizeIframe() {
+            const containerWidth = container.clientWidth;
+            const scale = containerWidth / 1280;
+            scaler.style.transform = `scale(${scale})`;
+        }
+
+        // --- 이벤트 리스너 설정 ---
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < TOTAL_SLIDES) {
+                goToSlide(currentSlide + 1);
+            }
+        });
+
+        jumpBtn.addEventListener('click', () => {
+            goToSlide(slideJumpInput.value);
+        });
+
+        slideJumpInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                goToSlide(slideJumpInput.value);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (document.activeElement === slideJumpInput) {
+                return;
+            }
+            if (event.key === 'ArrowLeft') {
+                prevBtn.click();
+            } else if (event.key === 'ArrowRight') {
+                nextBtn.click();
+            }
+        });
+        
+        window.addEventListener('resize', resizeIframe);
+
+        // --- 초기화 ---
+        goToSlide(1);
+        resizeIframe();
+
+    </script>
+</body>
+</html>```
+
+### 파일 구조 및 사용 방법
+
+1.  **폴더 생성:** 프레젠테이션을 담을 메인 폴더를 하나 만듭니다.
+2.  **`index.html` 저장:** 위 코드를 복사하여 메인 폴더 안에 `index.html`로 저장합니다.
+3.  **`src` 폴더 생성:** 메인 폴더 안에 `src`라는 이름의 하위 폴더를 만듭니다.
+4.  **슬라이드 파일 이동:** 이미지에 보이는 **27개**의 슬라이드 파일(`Part1 (1).html` ~ `Part6 (4).html`)을 모두 `src` 폴더 안으로 이동시킵니다.
+
+최종적인 폴더 구조는 다음과 같아야 합니다.

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 7: Smoothness Prior</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background-color: #f9fafb;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-wave-square mr-3 text-blue-600"></i>Smoothness Prior: "자연 영상은 부드럽다"</h1>
+            <p class="text-xl text-gray-500 mt-2">정규화 항의 물리적 의미</p>
+        </header>
+        <main class="flex-grow mt-8 grid grid-cols-2 gap-10 items-center">
+            <div class="flex flex-col space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">기본 가정</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        대부분의 자연 영상은 인접 픽셀 간 밝기 변화가 완만합니다. 즉, 국소적으로 <b class="text-blue-700">매끄러운(smooth)</b> 특성을 가집니다. 반면, 노이즈는 주변과 상관없이 값이 급격하게 튑니다.
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-5 rounded-lg">
+                    <h3 class="text-2xl font-bold text-gray-800">해결 전략</h3>
+                    <p class="text-lg text-gray-600 mt-2 leading-relaxed">
+                        이미지 전체의 <b class="text-blue-700">Gradient 크기를 최소화</b>하면, 급격한 변화(노이즈)는 억제되고 완만한 변화(구조)는 유지되어 자연스럽게 평활화(smoothing) 효과를 얻을 수 있습니다.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-blue-50 p-8 rounded-lg border-2 border-blue-200 text-center">
+                <h2 class="text-2xl font-bold text-blue-800 mb-4">수학적 표현</h2>
+                <p class="formula text-3xl">E<sub>s</sub>(R) = ∫ |∇R(x, y)|<sup>2</sup> dxdy</p>
+                <p class="text-lg text-gray-700 mt-6 leading-relaxed">
+                    이 수식은 이미지 모든 위치에서의 Gradient 크기 제곱을 합산한 것입니다.
+                </p>
+                <p class="text-lg text-gray-700 mt-4 leading-relaxed">
+                    이 값을 최소화하는 것은 수학적으로 <b class="font-semibold text-blue-700">'라플라시안 확산(Heat Diffusion)'</b> 과정을 푸는 것과 동일하며, 노이즈를 주변으로 퍼뜨려 평균화시키는 효과를 가집니다.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

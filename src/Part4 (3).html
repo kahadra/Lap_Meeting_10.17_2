@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 12-1: The Linear System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background-color: #f9fafb;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-equals mr-3 text-blue-600"></i>The Linear System</h1>
+            <p class="text-xl text-gray-500 mt-2">모든 픽셀에 대한 방정식을 행렬 형태로 표현하기</p>
+        </header>
+        <main class="flex-grow mt-10 flex flex-col justify-center items-center text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">이산화된 방정식을 행렬과 벡터로 표현</h2>
+            <p class="text-2xl text-gray-700 leading-relaxed">
+                이미지의 모든 픽셀에 대해 이산화된 방정식을 적용하고, 픽셀 값들을 하나의 긴 벡터로 생각하면,
+                <br>
+                전체 문제는 다음과 같은 거대한 <b class="text-blue-700">선형 연립방정식</b>으로 표현됩니다.
+            </p>
+            <div class="mt-10 bg-blue-50 p-6 rounded-lg border-2 border-blue-200 w-full max-w-3xl">
+                <p class="formula text-4xl">(<span class="text-red-600">I</span> + α<span class="text-blue-600">L</span>)<span class="text-green-600">r</span> = <span class="text-purple-600">i</span></p>
+            </div>
+            <div class="w-full max-w-4xl mt-8 grid grid-cols-2 gap-8 text-left text-lg">
+                <div>
+                    <p><b class="text-green-600 text-2xl">r</b> : 우리가 찾고자 하는 복원 영상의 모든 픽셀 값을 담은 벡터 (Unknown)</p>
+                </div>
+                <div>
+                    <p><b class="text-purple-600 text-2xl">i</b> : 관측된 영상의 모든 픽셀 값을 담은 벡터 (Known)</p>
+                </div>
+                <div>
+                    <p><b class="text-blue-600 text-2xl">L</b> : 모든 픽셀에 대해 2D Laplacian 연산을 수행하는 거대한 행렬</p>
+                </div>
+                <div>
+                    <p><b class="text-red-600 text-2xl">I</b> : 항등 행렬 (Identity Matrix)</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

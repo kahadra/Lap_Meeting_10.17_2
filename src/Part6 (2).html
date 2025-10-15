@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 20-1: Summary 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .summary-item {
+            background-color: #f9fafb;
+            border-left: 5px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-check-double mr-3 text-blue-600"></i>Summary (2/2): From PDE to Limitation</h1>
+            <p class="text-xl text-gray-500 mt-2">방정식의 해석과 Tikhonov 정규화의 한계</p>
+        </header>
+        <main class="flex-grow mt-12 flex flex-col justify-center space-y-10">
+            <div class="summary-item">
+                <h2 class="text-2xl font-bold text-gray-800">해석: 저역 통과 필터 (Low-pass Filter)</h2>
+                <p class="text-xl text-gray-700 mt-2">Tikhonov 정규화는 물리적으로 확산(Diffusion) 과정과 같으며, 주파수 관점에서는 노이즈와 경계 같은 고주파 성분을 제거하는 필터입니다.</p>
+            </div>
+            <div class="summary-item">
+                <h2 class="text-2xl font-bold text-gray-800">실제 해법: 희소 선형 시스템 (Sparse Linear System)</h2>
+                <p class="text-xl text-gray-700 mt-2">PDE를 이산화하면 <b class="font-mono">(I + αL)r = i</b> 형태의 거대 행렬 방정식이 되며, 이는 역행렬 대신 CG와 같은 반복법 솔버로 효율적으로 풀 수 있습니다.</p>
+            </div>
+            <div class="summary-item bg-red-50 border-red-500">
+                <h2 class="text-2xl font-bold text-red-700">한계: 경계 손실 (Edge Blurring)</h2>
+                <p class="text-xl text-gray-700 mt-2">노이즈와 경계를 구분하지 못하고 모든 고주파 성분을 함께 흐릿하게 만드는 명확한 한계를 가집니다.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

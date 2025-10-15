@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Slide 15: Frequency Domain Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background-color: #f9fafb;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-chart-area mr-3 text-blue-600"></i>Frequency Domain Analysis</h1>
+            <p class="text-xl text-gray-500 mt-2">왜 경계가 흐려지는가? 주파수 관점에서의 해석</p>
+        </header>
+        <main class="flex-grow mt-8 grid grid-cols-2 gap-10">
+            <div class="flex flex-col justify-center space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-3">푸리에 변환 (Fourier Transform)</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        공간 도메인의 방정식을 푸리에 변환하면, 복잡한 미분 연산이 주파수 도메인에서의 간단한 곱셈으로 바뀝니다.
+                    </p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-200 text-center">
+                    <p class="formula text-3xl">R̂(ω) = [ <sup>1</sup>&frasl;<sub>(1 + α|ω|<sup>2</sup>)</sub> ] · Î(ω)</p>
+                </div>
+                <ul class="text-base mt-2 space-y-1 text-gray-700">
+                    <li><b>R̂(ω), Î(ω)</b>: 복원 영상과 관측 영상의 주파수 성분</li>
+                    <li><b>ω</b>: 주파수 (값이 클수록 고주파, 즉 급격한 변화)</li>
+                </ul>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-lg text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">저역 통과 필터 (Low-pass Filter)</h2>
+                <div class="w-full bg-white p-4 rounded-md shadow">
+                    <p class="text-lg font-semibold">Filter Response: <sup>1</sup>&frasl;<sub>(1 + α|ω|<sup>2</sup>)</sub></p>
+                    <svg viewBox="0 0 100 50" class="w-full h-auto mt-2">
+                        <path d="M 5 45 L 95 45 M 5 45 L 5 5" stroke="#9ca3af" stroke-width="0.5" fill="none"/>
+                        <path d="M 5 10 Q 30 12, 95 40" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="49" font-size="4" text-anchor="middle">Frequency (ω) →</text>
+                        <text x="3" y="25" font-size="4" text-anchor="end" transform="rotate(-90, 3, 25)">Response</text>
+                    </svg>
+                </div>
+                <div class="text-left mt-4 space-y-3 text-lg">
+                    <p class="text-gray-700 leading-relaxed">
+                        <b class="text-green-600">저주파 (ω가 작을 때):</b> 필터 값이 1에 가까워 신호가 거의 그대로 통과합니다. (배경, 완만한 영역)
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        <b class="text-red-600">고주파 (ω가 클 때):</b> 필터 값이 0에 가까워 신호가 크게 감쇠합니다. (노이즈, <b class="font-bold">경계</b>)
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 21-1: Answers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .slide { width: 1280px; height: 720px; }
+        .qa-box {
+            background-color: #f9fafb;
+            border-left: 4px solid #3b82f6;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="slide bg-white p-16 flex flex-col">
+        <header class="pb-4">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight"><i class="fas fa-comment-dots mr-3 text-blue-600"></i>Answers for Discussion</h1>
+            <p class="text-xl text-gray-500 mt-2">예상 질문에 대한 간략한 답변</p>
+        </header>
+        <main class="flex-grow mt-6 grid grid-cols-2 gap-x-8 gap-y-6">
+            <div class="qa-box">
+                <h2 class="text-xl font-bold text-gray-800">Q. 왜 ∇²R 항이 smoothness를 만드나요?</h2>
+                <p class="text-lg text-gray-700 mt-2 leading-relaxed">
+                    A. 이산화된 ∇²R은 <b class="text-blue-600">"주변 픽셀 평균 - 현재 픽셀 값"</b>과 비례합니다. 이 값을 0에 가깝게 만드는 것은 현재 픽셀 값을 주변 평균과 비슷하게 만드는 것과 같으므로, 결과적으로 이미지가 부드러워집니다.
+                </p>
+            </div>
+            <div class="qa-box">
+                <h2 class="text-xl font-bold text-gray-800">Q. α는 실제 구현에서 어떻게 선택되나요?</h2>
+                <p class="text-lg text-gray-700 mt-2 leading-relaxed">
+                    A. 경험적으로 선택하거나, L-curve 분석, 교차 검증(Cross-validation) 같은 방법을 사용합니다. 최근에는 PSNR, SSIM 같은 이미지 품질 지표를 최대화하는 α를 탐색적으로 찾기도 합니다.
+                </p>
+            </div>
+            <div class="qa-box">
+                <h2 class="text-xl font-bold text-gray-800">Q. CG solver가 수렴하지 않을 때의 원인은?</h2>
+                <p class="text-lg text-gray-700 mt-2 leading-relaxed">
+                    A. 이론적으로 행렬(I+αL)은 항상 수렴 조건을 만족합니다. 만약 수렴하지 않는다면, 행렬 L의 구현 오류(경계 처리 등), 수치적 불안정성(매우 큰 α값), 또는 잘못된 전처리(Preconditioning) 때문일 수 있습니다.
+                </p>
+            </div>
+            <div class="qa-box">
+                <h2 class="text-xl font-bold text-gray-800">Q. L2 → L1 전환 시 수치적 난이도는?</h2>
+                <p class="text-lg text-gray-700 mt-2 leading-relaxed">
+                    A. L1 항은 미분 불가능하여 선형 시스템으로 바로 풀 수 없습니다. 대신, ADMM, Split Bregman, Primal-Dual과 같은 더 복잡한 반복적 최적화 기법이 필요하여 구현 난이도가 훨씬 높습니다.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
